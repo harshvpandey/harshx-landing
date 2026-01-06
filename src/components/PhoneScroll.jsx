@@ -195,13 +195,13 @@ export default function PhoneScroll() {
                         <React.Suspense fallback={null}>
                             <ambientLight intensity={0.8} />
                             <directionalLight position={[8, 12, 6]} intensity={5} color="#ffffff" />
-                            <directionalLight position={[-8, 8, -6]} intensity={6} color="#3b82f6" />
-                            <directionalLight position={[8, -5, -8]} intensity={4} color="#8b5cf6" />
+                            <directionalLight position={[-8, 8, -6]} intensity={5} color="#ffffff" />
+                            <directionalLight position={[8, -5, -8]} intensity={3} color="#a1a1a6" />
                             <pointLight position={[0, -12, 8]} intensity={2.5} color="#ffffff" />
                             <spotLight
                                 position={[0, 0, -15]}
-                                intensity={8}
-                                color="#60a5fa"
+                                intensity={6}
+                                color="#ffffff"
                                 angle={0.5}
                                 penumbra={0.5}
                             />
