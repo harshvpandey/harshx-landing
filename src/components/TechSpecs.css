@@ -1,0 +1,49 @@
+.tech-specs-section {
+    padding: 10vh 5%;
+    background: #080808;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.specs-container {
+    width: 100%;
+    max-width: 800px;
+}
+
+.specs-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spec-label {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.1rem;
+}
+
+.spec-value {
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+@media (max-width: 600px) {
+    .spec-item {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .spec-value {
+        text-align: left;
+    }
+}
