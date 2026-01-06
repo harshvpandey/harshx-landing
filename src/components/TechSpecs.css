@@ -1,7 +1,7 @@
 .tech-specs-section {
     padding: 10vh 5%;
-    background: #080808;
-    color: white;
+    background: #ffffff;
+    color: #1d1d1f;
     display: flex;
     justify-content: center;
 }
@@ -16,22 +16,23 @@
     margin-bottom: 3rem;
     font-weight: 600;
     text-align: left;
+    color: #1d1d1f;
 }
 
 .spec-item {
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .spec-label {
-    color: rgba(255, 255, 255, 0.5);
+    color: #86868b;
     font-size: 1.1rem;
 }
 
 .spec-value {
-    color: white;
+    color: #1d1d1f;
     font-weight: 500;
     font-size: 1.1rem;
     text-align: right;

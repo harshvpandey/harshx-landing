@@ -21,16 +21,16 @@ export function PhoneModel({ rotation, ...props }) {
     // CRITICAL: Corner radius must be < THICKNESS/2 = 0.11
     const CORNER_RADIUS = 0.10;
 
-    // === PBR MATERIALS (with polygon offset for z-fighting prevention) ===
+    // === PBR MATERIALS (Silver/Titanium for white background) ===
 
     const frameMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-        color: "#b8bcc0",
-        metalness: 1.0,
-        roughness: 0.35,
+        color: "#e8e8ed",
+        metalness: 0.9,
+        roughness: 0.25,
     }), []);
 
     const frontGlassMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-        color: "#020202",
+        color: "#1a1a1a",
         metalness: 0.0,
         roughness: 0.02,
         polygonOffset: true,
@@ -39,24 +39,24 @@ export function PhoneModel({ rotation, ...props }) {
     }), []);
 
     const backGlassMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-        color: "#0c1015",
-        metalness: 0.1,
-        roughness: 0.55,
+        color: "#d1d1d6",
+        metalness: 0.2,
+        roughness: 0.4,
         polygonOffset: true,
         polygonOffsetFactor: 1,
         polygonOffsetUnits: 1,
     }), []);
 
     const lensMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-        color: "#000",
-        metalness: 1.0,
-        roughness: 0.0,
+        color: "#1a1a2e",
+        metalness: 0.9,
+        roughness: 0.05,
     }), []);
 
     const ringMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-        color: "#7a8088",
+        color: "#c0c0c5",
         metalness: 1.0,
-        roughness: 0.15,
+        roughness: 0.1,
     }), []);
 
     // === SCREEN TEXTURE ===
@@ -97,13 +97,11 @@ export function PhoneModel({ rotation, ...props }) {
       ========================================= */}
             <group position={[0, 0, HALF_T + 0.01]}>
 
-                {/* Front Glass */}
+                {/* Front Glass - thicker for more rounded corners */}
                 <RoundedBox
-                    args={[WIDTH - 0.04, HEIGHT - 0.04, 0.02]}
-                    radius={0.08} // Safe: 0.08 < 0.02/2 = 0.01? NO! 
-                    // For 0.02 thick, radius must be < 0.01
-                    // Let's use 0.008
-                    smoothness={12}
+                    args={[WIDTH - 0.04, HEIGHT - 0.04, 0.04]}
+                    radius={0.018}
+                    smoothness={16}
                     material={frontGlassMaterial}
                 />
 
@@ -133,11 +131,11 @@ export function PhoneModel({ rotation, ...props }) {
       ========================================= */}
             <group position={[0, 0, -HALF_T - 0.01]}>
 
-                {/* Back Glass */}
+                {/* Back Glass - thicker for more rounded corners */}
                 <RoundedBox
-                    args={[WIDTH - 0.04, HEIGHT - 0.04, 0.02]}
-                    radius={0.008}
-                    smoothness={12}
+                    args={[WIDTH - 0.04, HEIGHT - 0.04, 0.04]}
+                    radius={0.018}
+                    smoothness={16}
                     material={backGlassMaterial}
                 />
 
@@ -187,15 +185,15 @@ export function PhoneModel({ rotation, ...props }) {
                     </mesh>
                 </group>
 
-                {/* Flash - offset 0.065 total */}
-                <mesh position={[0, 0.45, -0.065]} rotation={[Math.PI / 2, 0, 0]}>
-                    <cylinderGeometry args={[0.09, 0.09, 0.01, 24]} />
-                    <meshStandardMaterial color="#fff5e0" emissive="#fff5e0" emissiveIntensity={0.2} />
+                {/* Flash - positioned at top-right inside camera module */}
+                <mesh position={[0.28, 0.28, -0.065]} rotation={[Math.PI / 2, 0, 0]}>
+                    <cylinderGeometry args={[0.06, 0.06, 0.01, 24]} />
+                    <meshStandardMaterial color="#fff5e0" emissive="#fff5e0" emissiveIntensity={0.3} />
                 </mesh>
 
-                {/* LiDAR - offset 0.065 total */}
-                <mesh position={[0.28, 0.28, -0.065]} rotation={[Math.PI / 2, 0, 0]}>
-                    <cylinderGeometry args={[0.07, 0.07, 0.01, 24]} />
+                {/* LiDAR - positioned at top center inside camera module */}
+                <mesh position={[0, 0.35, -0.065]} rotation={[Math.PI / 2, 0, 0]}>
+                    <cylinderGeometry args={[0.05, 0.05, 0.01, 24]} />
                     <meshStandardMaterial color="#0a0a15" />
                 </mesh>
 

@@ -83,6 +83,29 @@ export default function PhoneScroll() {
         restDelta: 0.0001
     });
 
+    // Initialize activeSection based on current scroll position on mount
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        const initializeSection = () => {
+            const containerTop = containerRef.current.offsetTop;
+            const containerHeight = containerRef.current.scrollHeight - window.innerHeight;
+            const currentScroll = window.scrollY - containerTop;
+
+            if (currentScroll >= 0 && containerHeight > 0) {
+                const progress = Math.max(0, Math.min(1, currentScroll / containerHeight));
+                const sectionIndex = Math.round(progress * (SECTIONS.length - 1));
+                if (sectionIndex >= 0 && sectionIndex < SECTIONS.length) {
+                    setActiveSection(sectionIndex);
+                }
+            }
+        };
+
+        // Run on mount with a small delay to ensure DOM is ready
+        const timer = setTimeout(initializeSection, 100);
+        return () => clearTimeout(timer);
+    }, []);
+
     // Calculate which section is active based on scroll progress
     useEffect(() => {
         const unsubscribe = scrollYProgress.on('change', (value) => {
@@ -191,7 +214,7 @@ export default function PhoneScroll() {
                 {/* 3D Canvas Layer */}
                 <div className="canvas-layer">
                     <Canvas camera={{ position: [0, 0, 12], fov: 30 }}>
-                        <color attach="background" args={['#050505']} />
+                        <color attach="background" args={['#ffffff']} />
                         <React.Suspense fallback={null}>
                             <ambientLight intensity={0.8} />
                             <directionalLight position={[8, 12, 6]} intensity={5} color="#ffffff" />

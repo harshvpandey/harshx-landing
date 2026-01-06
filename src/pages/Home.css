@@ -8,12 +8,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #050505;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #f5f5f7;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .footer-text {
-    color: var(--text-secondary);
+    color: #86868b;
     font-size: 0.9rem;
     letter-spacing: 0.05em;
 }
